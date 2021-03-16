@@ -1,29 +1,38 @@
-# README #
+## Getting Started
 
-This README would normally document whatever steps are necessary to get your application up and running.
+You can run solution from Visual Studio 2019 IDE via IIS or run following commands from solution root:
 
-### What is this repository for? ###
+```powershell
+dotnet build
+dotnet run --project ./src/Photo.Manufacture.Api/Photo.Manufacture.Api.csproj
+```
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Depending on the host (IIS or Kestrel) substitute Url below:
 
-### How do I get set up? ###
+Create order
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+```shell
+curl -X POST "https://localhost:44366/Orders" -H  "accept: application/json" -H  "Content-Type: application/json-patch+json" -d "{\"orderId\":\"TestOrder\",\"orderItems\":[{\"productId\":1,\"quantity\":1},{\"productId\":2,\"quantity\":2},{\"productId\":5,\"quantity\":2}]}"
+```
 
-### Contribution guidelines ###
+Get order by id
 
-* Writing tests
-* Code review
-* Other guidelines
+```shell
+curl -X GET "https://localhost:44366/Orders/1" -H  "accept: text/plain"
+```
 
-### Who do I talk to? ###
+Get all orders
 
-* Repo owner or admin
-* Other community or team contact
+```shell
+curl -X GET "https://localhost:44366/Orders" -H  "accept: text/plain"
+```
+
+Run tests:
+
+```powershell
+dotnet test ./tests/Photo.Manufacture.UnitTests/Photo.Manufacture.UnitTests.csproj
+```
+
+
+
+Danyl Novhorodov
